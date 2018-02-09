@@ -1,6 +1,6 @@
 # OOPs Meet-up Code
 
-This repository contains the code demonstrated during PHP Reboot meet-up on `Understanding OOPs` under `Code Quality Meet-up series`.
+This repository contains the code to demonstrated during PHP Reboot meet-up on `Understanding OOPs` under `Code Quality Meet-up series`.
 
 # Availability of video and slides
 

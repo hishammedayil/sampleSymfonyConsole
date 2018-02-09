@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: kapil
+ * Date: 09/02/18
+ * Time: 19:18
+ */
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use phpreboot\calculator\CalculatorCommand;
+use Symfony\Component\Console\Application;
+
+// Creating instance of Application from Symfony/Console component.
+$application = new Application();
+
+$application->add(new CalculatorCommand());
+
+$application->run();

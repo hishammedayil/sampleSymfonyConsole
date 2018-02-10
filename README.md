@@ -6,8 +6,8 @@ This repository contains the code to demonstrated during PHP Reboot meet-up on `
 
 Video and slides of meet-up are available online:
 
-- Videos:
-- Slides: 
+- Videos: https://youtu.be/uVJtkgEr5Sk
+- Slides: https://speakerdeck.com/kapilsharma/code-quality-series-1-understanding-oops-concepts
 
 # Problem Statement
 

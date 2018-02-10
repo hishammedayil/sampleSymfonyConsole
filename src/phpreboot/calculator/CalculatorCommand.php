@@ -26,13 +26,6 @@ class CalculatorCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln([
-            '<fg=red>',
-            'This is error',
-            '</>'
-        ]);
-
-
         try {
             $operation = CalculatorFactory::getOperation($input->getArgument('operation'));
 
@@ -40,7 +33,9 @@ class CalculatorCommand extends Command
 
             foreach ($inputArray as $number) {
                 if (!is_numeric($number)) {
-                    throw new CalculatorException("Input numbers must be comma separated numbers, non-numeric value given given: " . $number);
+                    throw new CalculatorException(
+                        "Input numbers must be comma separated numbers,
+                        non-numeric value given given: " . $number);
                 }
             }
 

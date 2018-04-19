@@ -8,15 +8,20 @@
 
 namespace phpreboot\calculator;
 
-use phpreboot\calculator\exception\CalculatorException;
+use phpreboot\calculator\operations\OperationFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Exception;
 
+/**
+ * Class CalculatorCommand
+ * @package phpreboot\calculator
+ */
 class CalculatorCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName("calculate")
             ->setDescription("Run the calculator operation")
@@ -24,33 +29,27 @@ class CalculatorCommand extends Command
             ->addArgument('input', InputArgument::REQUIRED, 'Comma separated list of numbers');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         try {
-            $operation = CalculatorFactory::getOperation($input->getArgument('operation'));
-
+            $operationName = $input->getArgument('operation');
             $inputArray = explode(',', $input->getArgument('input'));
 
-            foreach ($inputArray as $number) {
-                if (!is_numeric($number)) {
-                    throw new CalculatorException(
-                        "Input numbers must be comma separated numbers,
-                        non-numeric value given given: " . $number);
-                }
-            }
-
+            $operation = OperationFactory::getOperation($operationName);
             $result = $operation->execute($inputArray);
-
             $output->writeln([
                 '<fg=green>',
-                'Result: ',
                 $result,
                 '</>'
             ]);
-        } catch (CalculatorException $e) {
+        } catch(Exception $e) {
             $output->writeln([
                 '<fg=red>',
-                'Error: ',
                 $e->getMessage(),
                 '</>'
             ]);
